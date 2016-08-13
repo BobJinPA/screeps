@@ -1,5 +1,6 @@
+var creeps_helper = require('creeps_helper');
 module.exports = {
-    run: function(){
+    spawn: function(creeps){
         
     }
 }
