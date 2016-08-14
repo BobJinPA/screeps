@@ -6,9 +6,7 @@ module.exports = {
     },
     clean: function () {
         for (var name in Memory.creeps) {
-            console.log('nope');
             if (!Game.creeps[name]) {
-                console.log('yep');
                 delete Memory.creeps[name];
             }
         }
