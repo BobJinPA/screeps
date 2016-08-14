@@ -1,6 +1,5 @@
 module.exports = {
     run: function (creep) {
-        console.log('yy');
         // if creep is bringing energy to a structure but has no energy left
         if (creep.memory.working == true && creep.carry.energy == 0) {
             creep.memory.working = false;
@@ -9,15 +8,15 @@ module.exports = {
         else if (creep.memory.working == false && creep.carry.energy == creep.carryCapacity) {
             creep.memory.working = true;
         }
-        console.log(creep.memory.working);
         // if creep is supposed to transfer energy to a structure
         if (creep.memory.working == true) {
-            console.log('p');
+
+
             if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-                // if not in range, move towards the controller
-                console.log('y?');
                 creep.moveTo(creep.room.controller);
-        }}
+            }
+
+            
             // if creep is supposed to harvest energy from source
             else {
                 var source = creep.pos.findClosestByPath(FIND_SOURCES);
@@ -25,6 +24,6 @@ module.exports = {
                     creep.moveTo(source);
                 }
             }
-        
+        }
     }
 };
