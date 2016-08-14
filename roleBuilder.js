@@ -10,18 +10,18 @@ module.exports = {
         }
         // if creep is supposed to transfer energy to a structure
         if (creep.memory.working == true) {
+            var structure = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
 
-
-            if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(creep.room.controller);
+                filter: (s) => (s.structureType == STRUCTURE_SPAWN
+                    || s.structureType == STRUCTURE_EXTENSION
+                    || s.structureType == STRUCTURE_TOWER)
+                    && s.energy < s.energyCapacity
             }
+            );
 
-            
-            // if creep is supposed to harvest energy from source
-            else {
-                var source = creep.pos.findClosestByPath(FIND_SOURCES);
-                if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(source);
+            if (structure != undefined) {
+                if (creep.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(structure);
                 }
             }
         }
