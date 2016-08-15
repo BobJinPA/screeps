@@ -1,4 +1,6 @@
 var role_helper = require('role_helper');
+var creeps_helper = require('creeps_helper');
+
 module.exports = {
     run: function (creep) {
         role_helper.set_working_status(creep);
@@ -8,10 +10,7 @@ module.exports = {
             }
         }
         else {
-            var source = creep.pos.findClosestByPath(FIND_SOURCES);
-            if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(source);
-            }
+            creeps_helper.get_power(creep);
         }
 
     }
